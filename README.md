@@ -4,7 +4,5 @@
 
 ```
 $ npm install
-$ npm run dev
+$ npm run relay
 ```
-
-Go to http://localhost:3000 in the browser

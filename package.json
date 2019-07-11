@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/__generated__/**' --schema ./schema.graphql"
   },
   "prettier": {
     "trailingComma": "all"
@@ -10,9 +11,13 @@
   "dependencies": {
     "next": "^9.0.1",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-relay": "^5.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "babel-plugin-relay": "^5.0.0",
+    "graphql": "^14.4.2",
+    "prettier": "^1.18.2",
+    "relay-compiler": "^5.0.0"
   }
 }

@@ -1,0 +1,739 @@
+"""All input for the create `Todo` mutation."""
+input CreateTodoInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Todo` to be created by this mutation."""
+  todo: TodoInput!
+}
+
+"""The output of our create `Todo` mutation."""
+type CreateTodoPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Todo` that was created by this mutation."""
+  todo: Todo
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Todo`."""
+  user: User
+
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = PRIMARY_KEY_ASC
+  ): TodosEdge
+}
+
+"""All input for the create `User` mutation."""
+input CreateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `User` to be created by this mutation."""
+  user: UserInput!
+}
+
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was created by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+  ): UsersEdge
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+"""All input for the `deleteTodoById` mutation."""
+input DeleteTodoByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Todo` to be deleted.
+  """
+  id: ID!
+}
+
+"""All input for the `deleteTodo` mutation."""
+input DeleteTodoInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The primary key for the todo."""
+  rowId: Int!
+}
+
+"""The output of our delete `Todo` mutation."""
+type DeleteTodoPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Todo` that was deleted by this mutation."""
+  todo: Todo
+  deletedTodoId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Todo`."""
+  user: User
+
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = PRIMARY_KEY_ASC
+  ): TodosEdge
+}
+
+"""All input for the `deleteUserById` mutation."""
+input DeleteUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be deleted.
+  """
+  id: ID!
+}
+
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  rowId: Int!
+}
+
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+  ): UsersEdge
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `Todo`."""
+  createTodo(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateTodoInput!
+  ): CreateTodoPayload
+
+  """Creates a single `User`."""
+  createUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserInput!
+  ): CreateUserPayload
+
+  """Updates a single `Todo` using its globally unique id and a patch."""
+  updateTodoById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTodoByIdInput!
+  ): UpdateTodoPayload
+
+  """Updates a single `Todo` using a unique key and a patch."""
+  updateTodo(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTodoInput!
+  ): UpdateTodoPayload
+
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserInput!
+  ): UpdateUserPayload
+
+  """Deletes a single `Todo` using its globally unique id."""
+  deleteTodoById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTodoByIdInput!
+  ): DeleteTodoPayload
+
+  """Deletes a single `Todo` using a unique key."""
+  deleteTodo(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTodoInput!
+  ): DeleteTodoPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  id: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    id: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `Todo`."""
+  todos(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TodoCondition
+  ): TodosConnection
+
+  """Reads and enables pagination through a set of `User`."""
+  users(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): UsersConnection
+  todo(rowId: Int!): Todo
+  user(rowId: Int!): User
+
+  """Reads a single `Todo` using its globally unique `ID`."""
+  todoById(
+    """The globally unique `ID` to be used in selecting a single `Todo`."""
+    id: ID!
+  ): Todo
+
+  """Reads a single `User` using its globally unique `ID`."""
+  userById(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    id: ID!
+  ): User
+}
+
+"""A todo written by a user."""
+type Todo implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The primary key for the todo."""
+  rowId: Int!
+
+  """The id of the user."""
+  userId: Int!
+
+  """The todo text."""
+  text: String
+  complete: Boolean
+
+  """The time this todo was created."""
+  createdAt: Datetime
+
+  """Reads a single `User` that is related to this `Todo`."""
+  user: User
+}
+
+"""
+A condition to be used against `Todo` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input TodoCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: Int
+
+  """Checks for equality with the object’s `text` field."""
+  text: String
+
+  """Checks for equality with the object’s `complete` field."""
+  complete: Boolean
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+}
+
+"""An input for mutations affecting `Todo`"""
+input TodoInput {
+  """The primary key for the todo."""
+  rowId: Int
+
+  """The id of the user."""
+  userId: Int!
+
+  """The todo text."""
+  text: String
+  complete: Boolean
+
+  """The time this todo was created."""
+  createdAt: Datetime
+}
+
+"""Represents an update to a `Todo`. Fields that are set will be updated."""
+input TodoPatch {
+  """The primary key for the todo."""
+  rowId: Int
+
+  """The id of the user."""
+  userId: Int
+
+  """The todo text."""
+  text: String
+  complete: Boolean
+
+  """The time this todo was created."""
+  createdAt: Datetime
+}
+
+"""A connection to a list of `Todo` values."""
+type TodosConnection {
+  """A list of `Todo` objects."""
+  nodes: [Todo]!
+
+  """
+  A list of edges which contains the `Todo` and cursor to aid in pagination.
+  """
+  edges: [TodosEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Todo` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Todo` edge in the connection."""
+type TodosEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Todo` at the end of the edge."""
+  node: Todo
+}
+
+"""Methods to use when ordering `Todo`."""
+enum TodosOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  TEXT_ASC
+  TEXT_DESC
+  COMPLETE_ASC
+  COMPLETE_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""All input for the `updateTodoById` mutation."""
+input UpdateTodoByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Todo` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `Todo` being updated.
+  """
+  patch: TodoPatch!
+}
+
+"""All input for the `updateTodo` mutation."""
+input UpdateTodoInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Todo` being updated.
+  """
+  patch: TodoPatch!
+
+  """The primary key for the todo."""
+  rowId: Int!
+}
+
+"""The output of our update `Todo` mutation."""
+type UpdateTodoPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Todo` that was updated by this mutation."""
+  todo: Todo
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Todo`."""
+  user: User
+
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = PRIMARY_KEY_ASC
+  ): TodosEdge
+}
+
+"""All input for the `updateUserById` mutation."""
+input UpdateUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  patch: UserPatch!
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  patch: UserPatch!
+  rowId: Int!
+}
+
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was updated by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+  ): UsersEdge
+}
+
+"""A user of the app."""
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+  rowId: Int!
+
+  """The user’s name."""
+  name: String!
+
+  """The time this user was created."""
+  createdAt: Datetime
+
+  """Reads and enables pagination through a set of `Todo`."""
+  todos(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TodoCondition
+  ): TodosConnection!
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+}
+
+"""An input for mutations affecting `User`"""
+input UserInput {
+  rowId: Int
+
+  """The user’s name."""
+  name: String!
+
+  """The time this user was created."""
+  createdAt: Datetime
+}
+
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
+  rowId: Int
+
+  """The user’s name."""
+  name: String
+
+  """The time this user was created."""
+  createdAt: Datetime
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+  """A list of `User` objects."""
+  nodes: [User]!
+
+  """
+  A list of edges which contains the `User` and cursor to aid in pagination.
+  """
+  edges: [UsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `User` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `User` at the end of the edge."""
+  node: User
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
