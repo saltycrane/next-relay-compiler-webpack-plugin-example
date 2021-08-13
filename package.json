@@ -9,7 +9,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "next": "^9.0.1",
+    "next": "^11.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-relay": "^5.0.0"
